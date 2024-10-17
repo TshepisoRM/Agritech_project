@@ -1,160 +1,163 @@
-# Agritech Leaf Disease Analysis Project
+# AgriTech Image Annotation Project: Plant Health Assessment
 
 ## Project Overview
-This project focuses on analyzing leaf disease patterns in agricultural crops using a dataset of 99 leaf images with various characteristics and disease indicators. The analysis includes comprehensive data exploration, preprocessing, and preparation for machine learning applications.
+This project is a collaboration between VineTech Innovations and Groot Constantia, South Africa's oldest wine-producing estate, aimed at developing an image annotation solution for detecting plant diseases, particularly grapevine leafroll disease. The solution utilizes drone imagery and AI-powered computer vision to monitor vineyard health across Groot Constantia's 165-hectare estate.
 
-## Dataset Description
-- **Size**: 99 samples
-- **Format**: CSV file (Complete_Dataset - Merged_Dataset.csv.csv)
-- **Features**: 25 columns including:
-  - Image metadata
-  - Leaf characteristics
+### Key Objectives
+- Develop an image annotation solution for plant disease detection
+- Create a trained machine learning model for early disease detection
+- Enable efficient monitoring of vineyard health
+- Facilitate early intervention in disease management
+
+## Dataset Information
+- **Source**: Plant Village Dataset (Kaggle)
+- **Size**: 99 annotated samples
+- **Features**: 25 characteristics including:
+  - Leaf condition classifications
   - Disease indicators
-  - Annotation data
+  - Physical measurements
+  - Image metadata
 
-### Key Features
-1. **Core Metadata**
-   - Leaf_ID
-   - Image_Name
-   - Width/Height
-   - Source information
+## Solution Components
 
-2. **Disease Indicators**
-   - Leaf_Condition
-   - Spot characteristics
-   - Fungal growth presence
-   - Leaf area affected
+### 1. Data Exploration
+- Analysis of healthy vs. diseased plant characteristics
+- Identification of key disease indicators
+- Statistical analysis of dataset composition
 
-3. **Physical Characteristics**
-   - Leaf color and texture
-   - Leaf shape
-   - Vein characteristics
+### 2. Image Analysis Features
+- Individual plant identification
+- Health status classification:
+  - Healthy
+  - Early-stage infection
+  - Advanced infection
+- Detection of missing or dead plants
 
-## Project Structure
+### 3. Technical Implementation
 ```
+project/
 ├── data/
-│   ├── raw/                   # Original dataset
-│   ├── processed/             # Cleaned and processed data
-│   └── splits/                # Train/validation/test splits
+│   ├── raw/                # Original Plant Village dataset
+│   ├── processed/          # Cleaned and annotated data
+│   └── metadata/           # Dataset statistics and information
 ├── notebooks/
-│   ├── 1_data_exploration.ipynb
-│   ├── 2_data_preprocessing.ipynb
-│   └── 3_feature_analysis.ipynb
-├── visualizations/
-│   ├── distribution_plots/
-│   ├── correlation_matrices/
-│   └── missing_value_charts/
-└── README.md
+│   ├── exploration/        # Data analysis notebooks
+│   ├── preprocessing/      # Data cleaning and preparation
+│   └── modeling/          # Model development notebooks
+├── src/
+│   ├── data/              # Data processing scripts
+│   ├── features/          # Feature engineering code
+│   └── visualization/     # Visualization utilities
+├── tests/                 # Unit tests
+├── docs/                  # Documentation
+└── requirements.txt       # Project dependencies
 ```
 
-## Data Analysis Summary
-
-### Data Quality
-- Complete core features (100% data availability)
-- Partial feature completion:
-  - Leaf Area Affected: 49.5% complete
-  - Most categorical features: ~25% complete
-  - Significant missing data in detailed characteristics
-
-### Key Insights
-1. Image Characteristics
-   - Consistent dimension format
-   - All images include annotation points
-2. Disease Patterns
-   - Multiple leaf conditions documented
-   - Varying degrees of area affected
-3. Feature Relationships
-   - Correlations between physical characteristics and disease indicators
-
-## Setup and Installation
+## Installation and Setup
 
 ### Prerequisites
 ```python
-# Required Python packages
-pandas==1.5.3
-numpy==1.24.3
-matplotlib==3.7.1
-seaborn==0.12.2
-scikit-learn==1.2.2
+# Required packages
+pandas>=1.5.3
+numpy>=1.24.3
+matplotlib>=3.7.1
+seaborn>=0.12.2
+scikit-learn>=1.2.2
+opencv-python>=4.7.0
 ```
 
-### Installation Steps
+### Getting Started
 1. Clone the repository:
 ```bash
 git clone [repository-url]
 cd agritech-project
 ```
 
-2. Create and activate virtual environment:
+2. Create virtual environment:
 ```bash
 python -m venv env
 source env/bin/activate  # Linux/Mac
 # or
-env\Scripts\activate  # Windows
+env\Scripts\activate     # Windows
 ```
 
-3. Install required packages:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## Usage Guide
 
-### Data Exploration
+### Data Processing
 ```python
-# Load and explore the dataset
-import pandas as pd
+# Example of basic data loading and processing
+from src.data import process_data
 
-# Read the dataset
-df = pd.read_csv('data/raw/Complete_Dataset - Merged_Dataset.csv.csv')
-
-# Basic information
-print(df.info())
+# Load and process dataset
+processed_data = process_data.load_dataset('path/to/data')
 ```
 
-### Running the Analysis
-1. Open Jupyter Notebook:
-```bash
-jupyter notebook
-```
-
-2. Navigate to notebooks/
-3. Run notebooks in sequence:
+### Running Analysis
+1. Navigate to notebooks directory
+2. Execute notebooks in sequence:
    - 1_data_exploration.ipynb
-   - 2_data_preprocessing.ipynb
+   - 2_preprocessing.ipynb
    - 3_feature_analysis.ipynb
 
-## Results and Visualizations
-The analysis produces various visualizations and insights:
-- Distribution of leaf conditions
-- Missing value patterns
-- Feature correlations
-- Disease indicator relationships
+## Key Features
+- Automated image preprocessing
+- Disease detection algorithms
+- Statistical analysis tools
+- Visualization capabilities
+- Annotation guidelines
+
+## Project Status
+- [x] Data collection and organization
+- [x] Initial exploratory analysis
+- [x] Feature engineering
+- [x] Base model development
+- [ ] Advanced model optimization
+- [ ] Deployment preparation
+
+## Ethical Considerations
+- Data privacy protection
+- Bias mitigation strategies
+- Impact assessment on agricultural labor
+- Responsible AI implementation
 
 ## Contributing
 1. Fork the repository
-2. Create your feature branch:
+2. Create feature branch:
 ```bash
 git checkout -b feature/YourFeature
 ```
-3. Commit your changes:
+3. Commit changes:
 ```bash
 git commit -m 'Add some feature'
 ```
-4. Push to the branch:
+4. Push to branch:
 ```bash
 git push origin feature/YourFeature
 ```
-5. Open a Pull Request
+5. Submit a Pull Request
 
-## Contact
-[Your Name/Organization]
-[Contact Information]
-
-## License
-This project is licensed under the [License Name] - see the LICENSE.md file for details
+## Team
+- Matimu Nghonyama - Data Scientist/ ML Engineer
+- Edzani Bruce Mutemula - Data Scientist
+- Matome Seshoka - Researcher
+- Tsepiso Moeketsi - Project Manager/ Data Analyst
+- Earl Tlhagane - Researcher
+- Nico Zwane - Researcher
+- Kefilwe - Researcher
 
 ## Acknowledgments
-- Data source attribution
-- Collaborators and contributors
-- Supporting institutions/organizations
+- VineTech Innovations
+- Groot Constantia Estate
+- Plant Village Dataset contributors
+
+
+
+## Contact
+For any queries regarding this project:
+- Email: nghonyamamatimu@gmail.com
+
